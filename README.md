@@ -482,19 +482,19 @@ After running successfully, you can check the final accuracy result in acc.log.
 ### Training performance
 
 - ReCoRD dataset
-| Parameters          | Ascend                                                           | 
-| --------------------| ---------------------------------------------------------------- |
-| Model Version       | KTNET                                                            | 
-| Resource            | Ascend 910；CPU 2.60GHz，192cores；Memory 755GB；System Euler2.8  | 
-| Uploaded Date       | 2021-05-12                                                       | 
-| Dataset             | ReCoRD                                                           | 
-| Training Parameters | epochs=4, batch_size=12*8, lr=7e-5                               | 
-| Optimizer           | Adam                                                             | 
-| Loss function       | SoftmaxCrossEntropy                                              | 
-| Loss                | 0.31248128                                                       | 
-| Speed               | 428ms/step                                                       |
-| Total time          | 2.5h                                                             |
 
+| Parameters          | Ascend                                                                            |
+| --------------------| ----------------------------------------------------------------  |
+| Model Version       | KTNET                                                               |
+| Resource            | Ascend 910；CPU 2.60GHz，192cores；Memory 755GB；System Euler2.8   |
+| Uploaded Date       | 2021-05-12                                                                       |
+| Dataset             | ReCoRD                                                                           |
+| Training Parameters | epochs=4, batch_size=12*8, lr=7e-5                                |
+| Optimizer           | Adam                                                                                  |
+| Loss function       | SoftmaxCrossEntropy                                                       |
+| Loss                | 0.31248128                                                                         |
+| Speed               | 428ms/step                                                                     |
+| Total time          | 2.5h                                                                         |
 - SQuaD dataset
 
 | Parameters          | Ascend                                                          | 
