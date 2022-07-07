@@ -396,41 +396,7 @@ python run_KTNET_record.py
 ```
 
 
-#### squad dataset
 
-```bash
-# Standalone
-# Distributed training 8pcs
-```
-
-DATAPATH is a required option, which is the path where the data file is stored.
-Check logs in train_squad/train_squad.log or in train_parallel_squad/train_squad.log.
-After training，you can find the checkpoint file in the output/finetune_checkpoint/ ，get the following loss value:
-
-```text
-# train_squad.log
-epoch: 1 step: 1, loss is 5.964628
-epoch: 1 step: 1, loss is 6.228141
-...
-```
-
-#### record dataset
-
-```bash
-# Standalone
-# Distributed 8 devices
-```
-
-DATAPATH is a required option, which is the path where the data file is stored.
-The above command runs in the background, you can view the training log in train/train_record.log or train_parallel/train_record.log.
-After training，you can find the checkpoint files in output/finetune_checkpoint/
-
-```shell
-# train_record.log
-epoch: 1 step: 2, loss is 6.11811
-epoch: 1 step: 2, loss is 5.9109883
-...
-```
 
 ## Evaluation Process
 
@@ -478,35 +444,7 @@ python run_KTNET_record_eval.py
 ```
 
 
-#### squad dataset
 
-Before running the following command, make sure that the loading and training checkpoint path has been set. Please set the checkpoint path to an absolute full path
-
-```bash
-```
-
-DATAPATH is a required option, which is the path where the data file is stored.
-CHECKPOINT_PATH is a required option, which is the path where the ckpt file is stored.
-The above command runs in the background, you can view the training log in eval_squad.log.
-
-```text
-"exact_match": 84.24,
-"f1": 91.06
-```
-
-#### record dataset
-
-```bash
-```
-
-DATAPATH is a required option, which is the path where the data file is stored.
-CHECKPOINT_PATH is a required option, which is the path where the ckpt file is stored.
-The above command runs in the background, you can view the training log in eval_squad.log.
-
-```text
-"exact_match": 68.95,
-"f1": 70.86
-```
 
 ## Inference Process
 
@@ -544,41 +482,44 @@ After running successfully, you can check the final accuracy result in acc.log.
 ### Training performance
 
 - ReCoRD dataset
-
-| --------------------| ---------------------------------------------------------------- |---------------------------- | --------------------------- |
-| Model Version       | KTNET                                                            | KTNET                       | KTNET                       |
-| Uploaded Date       | 2021-05-12                                                       | 2021-10-29                  | 2021-10-29                  |
-| Dataset             | ReCoRD                                                           | ReCoRD                      | ReCoRD                      |
-| Training Parameters | epochs=4, batch_size=12*8, lr=7e-5                               | epochs=4, batch_size=12, lr=6e-5   | epochs=4, batch_size=12*8, lr=6e-5   |
-| Optimizer           | Adam                                                             | Adam                        | Adam                        |
-| Loss function       | SoftmaxCrossEntropy                                              | SoftmaxCrossEntropy         | SoftmaxCrossEntropy         |
-| Loss                | 0.31248128                                                       | 0.2                         | 0.11                        |
-| Speed               | 428ms/step                                                       | 668.1 ms/step               | 960 ms/step                 |
-| Total time          | 2.5h                                                             | 6h 14min                    | 1h 7min                     |
+| Parameters          | Ascend                                                           | 
+| --------------------| ---------------------------------------------------------------- |
+| Model Version       | KTNET                                                            | 
+| Resource            | Ascend 910；CPU 2.60GHz，192cores；Memory 755GB；System Euler2.8  | 
+| Uploaded Date       | 2021-05-12                                                       | 
+| Dataset             | ReCoRD                                                           | 
+| Training Parameters | epochs=4, batch_size=12*8, lr=7e-5                               | 
+| Optimizer           | Adam                                                             | 
+| Loss function       | SoftmaxCrossEntropy                                              | 
+| Loss                | 0.31248128                                                       | 
+| Speed               | 428ms/step                                                       |
+| Total time          | 2.5h                                                             |
 
 - SQuaD dataset
 
-| --------------------| --------------------------------------------------------------- | ---------------------------- | ---------------------------- |
-| Model Version       | KTNET                                                           | KTNET | KTNET |
-| Uploaded Date       | 2021-05-12                                                      | 2021-10-29 | 2021-10-29 |
-| Dataset             | SQuAD                                                           | SQuAD | SQuAD |
-| Training Parameters | epochs=3, batch_size=8*8, lr=4e-5                               | epochs=3, batch_size=8, lr=4e-5 | epochs=3, batch_size=8*8, lr=4e-5 |
-| Optimizer           | Adam                                                            | Adam                | Adam                |
-| Loss function       | SoftmaxCrossEntropy                                             | SoftmaxCrossEntropy | SoftmaxCrossEntropy |
-| Loss                | 0.35267675                                                      | 0.3                 | 0.336353            |
-| Speed               | 338ms/step                                                      | 474.5 ms/step       | 760 ms/step         |
-| Total time          | 1h                                                              | 4h 20min            | 52min               |
+| Parameters          | Ascend                                                          | 
+| --------------------| --------------------------------------------------------------- | 
+| Model Version       | KTNET                                                           | 
+| Resource            | Ascend 910；CPU 2.60GHz，192cores；RAM 755GB；System Euler2.8    | 
+| Uploaded Date       | 2021-05-12                                                      | 
+| Dataset             | SQuAD                                                           | 
+| Training Parameters | epochs=3, batch_size=8*8, lr=4e-5                               | 
+| Optimizer           | Adam                                                            | 
+| Loss function       | SoftmaxCrossEntropy                                             | 
+| Loss                | 0.35267675                                                      | 
+| Speed               | 338ms/step                                                      | 
+| Total time          | 1h                                                              | 
 
 ### Evaluation performance
 
-| ---------------------| ---------------| ------------- | --------------| ------------ |
-| Model Version        | KTNET          | KTNET         | KTNET         | KTNET        |
-| Dataset              | ReCoRD         | ReCoRD        | SQuAd         | SQuAd        |
-| Uploaded Date        | 2021-05-12     | 2021-10-29    | 2021-05-12    | 2021-10-29   |
-| F1(macro-averaged)   | 70.62          | 70.58         | 71.62         | 91.42        |
-| exact_match          | 69.00          | 68.63         | 71.00         | 84.67        |
-| Total time           | 15min          | 15min         | 15min         | 15min        |
-
+| Parameters           | Ascend         |   Ascend        | 
+| ---------------------| ---------------| ---------------| 
+| Model Version        | KTNET          |  KTNET         | 
+| Dataset              | ReCoRD         |  SQuAd         |
+| Uploaded Date        | 2021-05-12     |  2021-05-12    | 
+| F1(macro-averaged)   | 70.62          |  71.62         | 
+| exact_match          | 69.00          | 71.00         | 
+| Total time           | 15min          |  15min         | 
 ### Inference performance
 
 | Parameters           | Ascend         | Ascend        |
